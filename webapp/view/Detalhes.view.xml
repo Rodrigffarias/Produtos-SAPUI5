@@ -1,0 +1,85 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="br.com.infoprodutos.Produtos.controller.Detalhes">
+	<App>
+		<pages>
+			<Page title="Detalhes do Produto" showNavButton="true" navButtonPress="onNavBack">
+				<content>
+					<ObjectHeader xmlns="sap.m" title="{ProductName}"
+						number="{ parts: [{path:'UnitPrice'},''], type:'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }" numberUnit="BRL"
+						id="header0" intro="Categoria: {Category/CategoryName}" icon="sap-icon://product"
+						xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" cd:w5g.dt.context="/Products">
+						<statuses>
+							<ObjectStatus xmlns="sap.m" text="{UnitsInStock}" state="{=${UnitsInStock} > 50 ? 'Warning' : 'None'}" id="status0"/>
+							<ObjectStatus xmlns="sap.m" text="{Discontinued}" state="{= ${Discontinued} ? 'Error' : 'Success' }" id="status1"/>
+						</statuses>
+						<attributes>
+							<ObjectAttribute text="Qtde. por Unidade: {QuantityPerUnit}" id="attribute0"/>
+							<ObjectAttribute text="Descrição: {Category/Description}" id="attribute1"/>
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar selectedKey="__filter1" id="bar0">
+						<items>
+							<IconTabFilter text="Fornecedor" icon="sap-icon://factory" iconColor="Negative" id="filter1">
+								<content>
+									<sap.ui.layout.form:SimpleForm xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+										xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout" id="form0">
+										<sap.ui.layout.form:content>
+											<Label text="Empresa" id="label0"/>
+											<Text xmlns="sap.m" text="{CompanyName}" id="text5"/>
+											<Label text="Contato" width="100%" id="label2"/>
+											<Text xmlns="sap.m" text="{ContactName}" id="text6"/>
+											<Label text="Celular" width="100%" id="label3"/>
+											<Text xmlns="sap.m" text="{Phone}" id="text7"/>
+											<Label text="Endereço" width="100%" id="label4"/>
+											<Text xmlns="sap.m" text="{Address}" id="text8"/>
+											<Label text="Cidade" width="100%" id="label5"/>
+											<Text xmlns="sap.m" text="{City}" id="text9"/>
+										</sap.ui.layout.form:content>
+									</sap.ui.layout.form:SimpleForm>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Vendas" icon="sap-icon://sales-order-item" iconColor="Critical" id="filter2">
+								<content>
+									<Table noDataText="Drop column list items here and columns in the area above" headerText="Order" items="{Order_Details}" inset="true" id="table0">
+										<items>
+											<ColumnListItem type="Active" id="item3">
+												<cells>
+													<Text text="{OrderID}" id="text10"/>
+													<Text text="{UnitPrice}" id="text11"/>
+													<Text text="{Quantity}" id="text12"/>
+													<Text text="{Discount}" id="text13"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+										<columns>
+											<Column id="column0">
+												<header>
+													<Label text="ID Ordem" id="label6"/>
+												</header>
+											</Column>
+											<Column id="column1">
+												<header>
+													<Label text="Preço Unitário" id="label7"/>
+												</header>
+											</Column>
+											<Column id="column2">
+												<header>
+													<Label text="Quantidade" id="label8"/>
+												</header>
+											</Column>
+											<Column id="column3">
+												<header>
+													<Label text="Desconto" id="label9"/>
+												</header>
+											</Column>
+										</columns>
+									</Table>
+								</content>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
